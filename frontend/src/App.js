@@ -21,16 +21,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Navigate to="/auth" />} />
                 <Route path="/auth" element={<AuthTabs />} />
-                {/* <Route path="/register" element={<Register />} />
-                <Route path="/doctor/register" element={<DoctorRegister />} /> */}
-                <Route path="/register" element={<RegisterTabs />} />
-                
-                {/* <Route path="/" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/doctor/register" element={<DoctorRegister />} />
-                <Route path="/doctor/login" element={<DoctorLogin />} /> */}
-                {/* Protected Route: Only accessible if authenticated */}
+                <Route path="/register" element={<RegisterTabs />} />                
                 <Route
                     path="/profile"
                     element={
@@ -64,7 +55,6 @@ function App() {
                     }
                 />
 
-                // Add a route for booking appointments
                 <Route
                     path="/book-appointment"
                     element={
