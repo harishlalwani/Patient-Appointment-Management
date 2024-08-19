@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import multiMonthPlugin from '@fullcalendar/multimonth'
+import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Typography, Button } from '@mui/material';
@@ -67,7 +69,12 @@ const Slots = () => {
             {
                 user && 
                 <FullCalendar
-                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                    headerToolbar={{
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay, listWeek'
+                    }}
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, multiMonthPlugin, listPlugin]}
                     initialView="timeGridWeek"
                     events={doctorSlots.map(slot => {
                             let event = {
@@ -86,6 +93,9 @@ const Slots = () => {
                                 };
                     
                             } 
+                            else {
+                                event.title = "Available Slot";
+                            }
 
                             if(slot.appointment &&  user.userType == "doctor" ) {
                                 event.editable = true;

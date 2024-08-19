@@ -3,6 +3,8 @@ import { Container, Typography, FormControl, InputLabel, Select, MenuItem } from
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import listPlugin from '@fullcalendar/list';
+import multiMonthPlugin from '@fullcalendar/multimonth'
 import interactionPlugin from '@fullcalendar/interaction';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDoctors, fetchDoctorSlots, bookAppointment, cancelAppointment, rescheduleAppointment } from '../redux/actions/appointmentActions';
@@ -124,7 +126,13 @@ const BookAppointment = () => {
 
             {doctorSlots.length > 0 ? (
                 <FullCalendar
-                    plugins={[timeGridPlugin, interactionPlugin]}
+                    headerToolbar={{
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    }}
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, multiMonthPlugin, listPlugin]}
+                    
                     initialView="timeGridWeek"
                     events={doctorSlots.map(slot => {
                             let event = {
@@ -143,6 +151,9 @@ const BookAppointment = () => {
                                 };
                     
                             } 
+                            else {
+                                event.title = "Available Slot";
+                            }
 
                             if(slot.appointment && user.userType == "doctor" ) {
                                 event.editable = true;
