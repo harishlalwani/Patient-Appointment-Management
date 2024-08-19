@@ -118,7 +118,7 @@ This project is a full-stack application with a React frontend, Node.js backend,
 
 #### Application Flow
 
-**Doctor Flow**
+- **Doctor Flow:**
 Register
 - registers on platform
 
@@ -135,7 +135,7 @@ Chat
 - Doctor can select any user and send him a message. If he is available, he will reply.
 
 
-**User Flow**
+- **User Flow:**
 Register
 - registers on platform
 
